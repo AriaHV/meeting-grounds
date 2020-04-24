@@ -29,15 +29,30 @@ body {
   display: flex;
   flex-flow: column nowrap;
 }
-.canvas .panel .surface.online div:nth-child(1) {
-  flex-grow: 9;
-  border-radius: 2rem 2rem 0 0;
-  background-color: #EBD8F5;
+.canvas .panel .surface div {
+  position: relative;
 }
-.canvas .panel .surface.online div:nth-child(2) {
-  flex-grow: 1;
+.canvas .panel .surface.online {
+  background-color: #EBD8F5;
+  border-radius: 2rem;
+}
+.canvas .panel .surface.online .screen {
+  height: 100%;
+  margin: 4rem 1rem 1rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #FFFFFF;
+}
+.canvas .panel .surface.online .bar {
+  height: 6rem;
   border-radius: 0 0 2rem 2rem;
   background-color: #FF7C7C;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+.canvas .panel .surface.online .bar img {
+  height: 100%;
+  width: auto;
 }
 .canvas .panel .surface.within div:nth-child(1) {
   flex-grow: 1;
@@ -47,6 +62,12 @@ body {
 .canvas .panel .surface.within div:nth-child(2) {
   flex-grow: 2;
   background-color: #A366C5;
+  display: flex;
+  flex-flow: column-reverse nowrap;
+}
+.canvas .panel .surface.within div:nth-child(2) img {
+  width: 100%;
+  bottom: 0;
 }
 .canvas .panel .surface.outside {
   background-color: #FF7C7C;
