@@ -1,11 +1,12 @@
 :root {
   font-size: 16px;
-  font-family: Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .canvas {
@@ -14,6 +15,49 @@ body {
   height: 70vw;
   display: flex;
   flex-flow: row nowrap;
+}
+.canvas .window {
+  position: absolute;
+  background-color: #FFDFDF;
+}
+.canvas .window .title {
+  font-family: "Inconsolata", monospace;
+  line-height: 2rem;
+  height: 2rem;
+  padding: 0 1rem 0 1rem;
+  margin: 0;
+  width: inherit;
+  background-color: #F33737;
+}
+.canvas .window .view {
+  padding: 0.25rem;
+  background-color: #FFDFDF;
+}
+.canvas .window.anime {
+  bottom: 40%;
+  right: 85%;
+  z-index: -1000;
+}
+.canvas .window.anime img:nth-child(1) {
+  width: fit-content;
+  height: auto;
+}
+.canvas .window.identity {
+  bottom: 50%;
+  right: 75%;
+}
+.canvas .window.identity img:nth-child(1) {
+  width: fit-content;
+  height: auto;
+}
+.canvas .window.identity img:nth-child(2) {
+  position: absolute;
+  left: -10%;
+  top: 2rem;
+}
+.canvas .window.sharing {
+  right: 0;
+  bottom: 0;
 }
 .canvas .panel {
   position: relative;
@@ -41,6 +85,25 @@ body {
   margin: 4rem 1rem 1rem 1rem;
   border-radius: 0.5rem;
   background-color: #FFFFFF;
+  display: flex;
+  flex-flow: column-reverse nowrap;
+  overflow: hidden;
+}
+.canvas .panel .surface.online .screen .message {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+}
+.canvas .panel .surface.online .screen .message img {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  max-width: 4rem;
+  max-height: 4rem;
+}
+.canvas .panel .surface.online .screen .message.bad {
+  background-color: #FF7C7C;
+  color: #ffffff;
 }
 .canvas .panel .surface.online .bar {
   height: 6rem;
@@ -54,10 +117,33 @@ body {
   height: 100%;
   width: auto;
 }
-.canvas .panel .surface.within div:nth-child(1) {
+.canvas .panel .surface.within {
+  overflow: hidden;
+}
+.canvas .panel .surface.within .healing {
   flex-grow: 1;
+  height: 50%;
   border-radius: 2rem 2rem 0 0;
   background-color: #FFDFDF;
+  padding: 2rem;
+  display: flex;
+  flex-flow: column-reverse nowrap;
+}
+.canvas .panel .surface.within .healing img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+.canvas .panel .surface.within .healing p {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  z-index: 1000;
+  text-align: right;
+  font-family: "Inconsolata", monospace;
+  width: 100%;
+}
+.canvas .panel .surface.within .healing p:nth-child(1) {
+  padding-right: 1.235rem;
 }
 .canvas .panel .surface.within div:nth-child(2) {
   flex-grow: 2;
@@ -73,10 +159,25 @@ body {
   background-color: #FF7C7C;
 }
 
+.text {
+  position: relative;
+  width: 100vw;
+  padding: 6rem 0;
+}
+.text h1, .text h3 {
+  text-align: center;
+  margin: 0;
+}
+
 @media (min-aspect-ratio: 100/70) {
   .canvas {
     width: 142vh;
     height: 100vh;
+    margin: 0 auto 0 auto;
+  }
+
+  .text {
+    width: 142vh;
     margin: 0 auto 0 auto;
   }
 }

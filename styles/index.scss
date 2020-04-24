@@ -2,13 +2,15 @@
 
 :root {
     font-size:          16px;
-    font-family:        Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
     // RESET MARGIN AND PADDING ON BODY
     margin:     0;
     padding:    0;
+
+    overflow: hidden;
 }
 
 .canvas {
@@ -20,6 +22,58 @@ body {
     // CONTENT LAYOUT
     display:        flex;
     flex-flow:      row nowrap;
+
+    .window {
+        position: absolute;
+        background-color: theme.$color-red-lightest;
+
+        .title {
+            font-family: 'Inconsolata', monospace;
+            line-height:    2rem;
+            height:         2rem;
+            padding:    0 1rem 0 1rem;
+            margin:     0;
+            width: inherit;
+            background-color: theme.$color-red;
+        }
+
+        .view {
+            padding: 0.25rem;  
+            background-color: theme.$color-red-lightest;
+        }
+    }
+
+    .window.anime {
+        bottom: 40%;
+        right: 85%;
+        z-index: -1000; 
+
+        img:nth-child(1) {
+            width: fit-content;
+            height: auto;
+        }
+    }
+
+    .window.identity {
+        bottom: 50%;
+        right: 75%; 
+
+        img:nth-child(1) {
+            width: fit-content;
+            height: auto;
+        }
+
+        img:nth-child(2) {
+            position: absolute; 
+            left: -10%;
+            top: 2rem;
+        }
+    }
+
+    .window.sharing {
+        right: 0;
+        bottom: 0;
+    }
     
     .panel {
         position:   relative;
@@ -47,6 +101,27 @@ body {
                 border-radius: 0.5rem;
                 background-color: theme.$color-background;
 
+                display: flex;
+                flex-flow: column-reverse nowrap;
+                overflow: hidden;
+
+                .message {
+                    position: relative;
+                    height: 6rem;
+                    width: 100%;
+
+                    img {
+                        width: 100%; height: 100%;  
+                        padding: 1rem; max-width: 4rem; max-height: 4rem; 
+                    }
+                }
+
+                .message.bad {
+                    background-color: theme.$color-red-lighter;
+                    color: #ffffff;
+
+
+                }
             }
             
             .bar {
@@ -67,10 +142,33 @@ body {
         }
 
         .surface.within {
-            div:nth-child(1)  {
-                flex-grow: 1;    
+            overflow: hidden;
+            .healing  {
+                flex-grow: 1;
+                height: 50%;    
                 border-radius: 2rem 2rem 0 0;
                 background-color: theme.$color-red-lightest;
+                padding: 2rem;
+
+                img { 
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                }
+
+
+                
+                // CONTENT BEHAVIOUR
+                display: flex;
+                flex-flow: column-reverse nowrap;
+                p { 
+                    margin: 1rem 0;  font-size: 1.5rem; z-index: 1000; text-align: right; 
+                    font-family: 'Inconsolata', monospace;
+                    width: 100%;
+                }
+
+                p:nth-child(1) { padding-right: 1.235rem; }
+
             }
             
             div:nth-child(2) {
@@ -91,11 +189,30 @@ body {
     }
 }
 
+.text {
+    // MAINTAIN 100:70 ASPECT-RATIO
+    position:       relative;
+    width:          100vw;
+
+    padding: 6rem 0;
+
+    h1, h3 {
+        text-align: center;
+        margin: 0;
+    }
+}
+
 @media (min-aspect-ratio: 100/70) {
     .canvas {
         // MAINTAIN 100:70 aspect-ratio
         width:  142vh;
         height: 100vh;
+        margin: 0 auto 0 auto;
+    }
+
+    .text {
+        // MAINTAIN 100:70 aspect-ratio
+        width:  142vh;
         margin: 0 auto 0 auto;
     }
 }
